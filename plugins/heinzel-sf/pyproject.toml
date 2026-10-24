@@ -1,0 +1,27 @@
+[project]
+name = "heinzel-sf"
+version = "0.0.0"
+description = "SF, the company layer for Heinzelmännchen: its look for the web app, later its adapters and playbooks."
+readme = "README.md"
+authors = [{ name = "Helmut Hoffer von Ankershoffen", email = "helmuthva@gmail.com" }]
+license = "LicenseRef-Proprietary"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+keywords = ["heinzel", "heinzel-plugin", "heinzelmaennchen"]
+classifiers = ["Private :: Do Not Upload", "Programming Language :: Python :: 3", "Typing :: Typed"]
+# Heinzelmännchen resolves to the installed one when the plugin is added with `hz system plugin add`. Themes
+# (`module.theme`, heinzel ADR 0044) landed after 0.3.0: the bound moves to the first release that has them.
+dependencies = ["heinzel>=0.3.0,<1"]
+
+[project.entry-points."heinzel.modules"]
+sf = "heinzel_sf"
+
+[project.urls]
+Source = "https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf/tree/main/plugins/heinzel-sf"
+
+[build-system]
+requires = ["hatchling>=1.29.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/heinzel_sf"]

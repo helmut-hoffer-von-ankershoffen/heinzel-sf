@@ -1,0 +1,48 @@
+# SF's look for the Heinzelmännchen web app (heinzel ADR 0044), after the vendor's web console: a near-black blue-grey
+# canvas with a slightly lighter sidebar, hairline borders, one strong blue for primary actions and a blue-tinted
+# active item; the light variant keeps the blue on white and very light grey-blue.
+# Dark values are measured from the console (see the plugin README); light and the derived tokens are tuned to them.
+# Every value becomes a CSS custom property; Heinzelmännchen checks each one when this plugin is imported.
+# Fonts are the machine's own (the web app loads no remote font), so each stack ends in a generic family.
+name = "sf"
+title = "SF"
+font_sans = 'Inter, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+font_mono = '"SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace'
+radius = "0.5rem"
+border_width = "1px"
+
+[light]
+background = "#ffffff"
+foreground = "#1d232b"
+muted = "#f2f4f7"
+muted_foreground = "#5e6876"
+card = "#ffffff"
+border = "#e2e6eb"
+primary = "#2365d1"
+primary_foreground = "#ffffff"
+accent = "#e4edfb"
+ok = "#16794a"
+warn = "#9a5b00"
+bad = "#c4302b"
+ring = "#2365d1"
+sidebar = "#f6f8fa"
+input = "#d3d9e0"
+popover = "#ffffff"
+
+[dark]
+background = "#16181d"
+foreground = "#d7dbe1"
+muted = "#1c2027"
+muted_foreground = "#979fab"
+card = "#16181d"
+border = "#23272c"
+primary = "#2365d1"
+primary_foreground = "#ffffff"
+accent = "#233554"
+ok = "#4cb782"
+warn = "#e3a53c"
+bad = "#ef6461"
+ring = "#2365d1"
+sidebar = "#191e24"
+input = "#2d333b"
+popover = "#1c2027"

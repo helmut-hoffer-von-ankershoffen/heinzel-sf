@@ -1,0 +1,65 @@
+# The workspace of SF's private Heinzelmännchen plugins: one distribution per layer in plugins/<name>/, developed,
+# tested and released together (heinzel ADR 0040). The root is no plugin itself (a virtual workspace); it holds the
+# tooling every plugin shares.
+[tool.uv]
+required-version = ">=0.13.0"
+
+[tool.uv.workspace]
+members = ["plugins/*"]
+
+[tool.uv.sources]
+heinzel-sf = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "heinzel-sf",
+    # PINNED TO THE CORE'S MAIN AFTER "themes for the web app, offered by plugins" (#70) until a release has
+    # `module.theme`; then pin the release tag here and in README.md.
+    "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@b56430164ff8a24102e0e77e8f51597cfc2ab9ba",
+    "mypy>=1.19.0,<3",
+    "pytest>=9.0.3,<10",
+    "pytest-timeout>=2.4.0,<3",
+    "ruff>=0.14.8,<1",
+]
+
+[tool.ruff]
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # conflicts with the ruff formatter
+    "CPY001", # no copyright header per file; LICENSE covers the repository
+    "D203",   # incompatible with D211
+    "D213",   # incompatible with D212
+    "ISC001", # conflicts with the ruff formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**/*.py" = ["ANN", "D", "INP001", "PLR2004", "S101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+plugins = ["pydantic.mypy"]
+mypy_path = ["plugins/heinzel-sf/src"]
+files = ["plugins/*/src"]
+
+[tool.pytest]
+minversion = "9.0"
+strict = true
+testpaths = ["plugins"]
+addopts = ["-ra", "--import-mode=importlib"]
+filterwarnings = ["error"]
+timeout = "15" # fallback; heinzel.testing gives each test its level's timeout (unit 5 s, integration 15 s)
+markers = [
+    # Heinzelmännchen's test categories (its docs/CODING_STANDARDS.md#tests); heinzel.testing enforces exactly one.
+    "unit: Solitary unit tests: one layer in isolation, offline. Timeout 5 s.",
+    "integration: Sociable tests across layers (CLI -> service) with the real entry point, offline. Timeout 15 s.",
+    "e2e: End-to-end tests against real external services. Timeout 120 s.",
+    "long_running: Tests with a timeout >= 5 min.",
+]
