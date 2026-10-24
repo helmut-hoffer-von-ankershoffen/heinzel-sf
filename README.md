@@ -14,11 +14,11 @@ Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come late
 ## Install
 
 The repository is private, so git needs read access to it (`gh auth login`, or any git credential helper). The
-plugin needs a Heinzelmännchen with themes (`module.theme`, merged to main after 0.3.0); until a release has them,
-install the core from main:
+plugin needs a Heinzelmännchen whose themes have type scale, density and font files (heinzel #73, after 0.3.0);
+until that is merged and released, install the core from its branch (`@main` once it is merged):
 
 ```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@main"
+uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@feat/theme-type-density-fonts"
 hz system plugin add "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
 hz system theme use sf
 ```
@@ -27,7 +27,7 @@ hz system theme use sf
 environment. The same in one `uv` command:
 
 ```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@main" \
+uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@feat/theme-type-density-fonts" \
   --with "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
 ```
 

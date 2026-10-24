@@ -3,13 +3,35 @@
 # active item; the light variant keeps the blue on white and very light grey-blue.
 # Dark values are measured from the console (see the plugin README); light and the derived tokens are tuned to them.
 # Every value becomes a CSS custom property; Heinzelmännchen checks each one when this plugin is imported.
-# Fonts are the machine's own (the web app loads no remote font), so each stack ends in a generic family.
+# Inter ships with the theme (fonts/, SIL OFL 1.1, see fonts/LICENSE.txt); the web app serves it from its own origin.
 name = "sf"
 title = "SF"
 font_sans = 'Inter, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
 font_mono = '"SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace'
-radius = "0.5rem"
 border_width = "1px"
+
+# Type scale and density, measured from the console: 14px text, 12px secondary text, 30px navigation rows, 16px icons.
+font_size = "14px"
+font_size_small = "12px"
+heading_weight = 550
+heading_tracking = "-0.5px"
+icon_size = "16px"
+row_height = "30px"
+spacing = "0.25rem"
+radius_control = "0.375rem" # buttons, inputs, navigation items: 6px
+radius = "0.5rem"           # cards and dialogs: 8px
+
+[[fonts]]
+family = "Inter"
+file = "fonts/InterVariable.woff2"
+weight = "100 900"
+style = "normal"
+
+[[fonts]]
+family = "Inter"
+file = "fonts/InterVariable-Italic.woff2"
+weight = "100 900"
+style = "italic"
 
 [light]
 background = "#ffffff"
@@ -28,6 +50,8 @@ ring = "#2365d1"
 sidebar = "#f6f8fa"
 input = "#d3d9e0"
 popover = "#ffffff"
+accent_foreground = "#2365d1"
+icon = "#1d232b"
 
 [dark]
 background = "#16181d"
@@ -46,3 +70,5 @@ ring = "#2365d1"
 sidebar = "#191e24"
 input = "#2d333b"
 popover = "#1c2027"
+accent_foreground = "#71aaff" # measured: the active item's text and icon, links
+icon = "#d7dbe1"              # measured: navigation icons are in the text colour
