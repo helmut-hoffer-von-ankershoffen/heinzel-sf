@@ -34,6 +34,7 @@ Both modes are measured from Snowsight.
 | icon | `#d7dbe1` | `#23272c` | measured: navigation icons are in the text colour |
 | ring | `#2365d1` | `#276ee1` | the primary blue |
 | popover, input | `#1c2027`, `#2d333b` | `#ffffff`, `#ffffff` | dark derived; light measured |
+| main_tint | none | `#eef5fd` | light measured: the tint at the top of the main area, fading to white |
 | ok, warn, bad | `#4cb782`, `#e3a53c`, `#ef6461` | `#16794a`, `#9a5b00`, `#c4302b` | derived; light at least 4.5:1 on white |
 
 Type and density, measured from the console: text `14px` (`font_size`), secondary text `12px` (`font_size_small`),
@@ -60,6 +61,13 @@ checksum; the upright file matches the copy on the Inter site byte for byte. SHA
 Inter is © The Inter Project Authors, licensed under the SIL Open Font License 1.1:
 [`fonts/LICENSE.txt`](src/heinzel_sf/themes/fonts/LICENSE.txt), shipped in the wheel next to the fonts. The theme
 declares them as `[[fonts]]`; the web app serves them from its own origin at `/theme-fonts/sf/<n>.woff2`.
+
+### Logo
+
+`[logo]` in the theme names [`logo/wordmark-light.svg`](src/heinzel_sf/themes/logo/wordmark-light.svg) (mark and word)
+and [`logo/mark.svg`](src/heinzel_sf/themes/logo/mark.svg) (the square mark, for the collapsed rail), `alt`
+"Snowflake", `24px` high: cleaned single-colour SVGs in the vendor's `#2cb6e8`, which reads on both sidebars, so dark
+uses the light file. The web app serves them from its own origin at `/theme-assets/sf/<light|dark|mark>.svg`.
 
 ### Not themeable yet
 
