@@ -33,6 +33,13 @@ file = "fonts/InterVariable-Italic.woff2"
 weight = "100 900"
 style = "italic"
 
+# The vendor's logo in its own blue; it reads on both sidebars (7.2:1 on the dark one), so dark uses the light file.
+[logo]
+light = "logo/wordmark-light.svg"
+mark = "logo/mark.svg"
+alt = "Snowflake"
+height = "24px"
+
 [light]
 # Measured from the console's light mode: a white page and a white sidebar with a hairline right border.
 background = "#ffffff"
@@ -53,6 +60,7 @@ input = "#ffffff"
 popover = "#ffffff"
 accent_foreground = "#2365d1" # measured: the active item's text and icon, links
 icon = "#23272c"              # measured: navigation icons are in the text colour
+main_tint = "#eef5fd"         # measured: the light blue at the top of the main area, fading to white
 
 [dark]
 background = "#16181d"

@@ -30,6 +30,10 @@ def test_the_sf_theme_is_listed_with_valid_tokens_and_can_be_used(hz):
     ]
     urls = [font["url"].split("?v=")[0] for font in sf["fonts"]]
     assert urls == ["/theme-fonts/sf/0.woff2", "/theme-fonts/sf/1.woff2"]
+    logo = sf["logo"]
+    assert (logo["alt"], logo["height"]) == ("Snowflake", "24px")
+    assert logo["light"].startswith("/theme-assets/sf/light.svg?v=")
+    assert logo["mark"].startswith("/theme-assets/sf/mark.svg?v=")
     assert hz("system", "theme", "use", "sf").json["selected"] == "sf"
     config = tomllib.loads((user_config_dir() / "config.toml").read_text(encoding="utf-8"))
     assert config["system"]["theme"]["name"] == "sf"

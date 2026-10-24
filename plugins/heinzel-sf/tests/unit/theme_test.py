@@ -162,3 +162,22 @@ def test_the_logo_is_the_vendor_blue_on_both_modes():
     for file in LOGO_FILES:
         fills = set(re.findall(r'fill="([^"]+)"', (THEME.parent / file).read_text(encoding="utf-8")))
         assert fills == {"#2cb6e8"}, file
+
+
+def test_the_theme_declares_the_logo_and_a_light_main_tint():
+    theme = load()
+    assert theme.logo is not None
+    assert (theme.logo.light, theme.logo.dark, theme.logo.mark) == ("logo/wordmark-light.svg", None, "logo/mark.svg")
+    assert (theme.logo.alt, theme.logo.height) == ("Snowflake", "24px")
+    assert set(theme.logo.files()) == set(LOGO_FILES)
+    assert (theme.light.main_tint, theme.dark.main_tint) == ("#eef5fd", None)
+
+
+def test_heinzel_accepts_and_serves_the_logo_files():
+    (let,) = [let for let in heinzel_sf.module.lets if isinstance(let, ThemeLet)]
+    logos = let.logos()
+    assert logos is not None
+    for name in ("light", "dark", "mark"):
+        assert logos.content(name).startswith(b"<svg")
+        assert logos.url(name).startswith(f"/theme-assets/sf/{name}.svg?v=")
+    assert logos.content("dark") == logos.content("light")
