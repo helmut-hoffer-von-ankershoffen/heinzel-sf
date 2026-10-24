@@ -1,0 +1,28 @@
+"""Heinzelmännchen's CLI head with this plugin discovered through its real entry point. Offline."""
+
+import tomllib
+
+import pytest
+from heinzel.kernel import user_config_dir
+
+pytestmark = pytest.mark.integration
+
+
+def test_info_names_the_module_and_the_theme(hz):
+    about = hz("sf", "info").json
+    assert about["plugin"] == "heinzel-sf"
+    assert (about["modules"], about["themes"]) == (["sf"], ["sf"])
+
+
+def test_contributes_to_system_info(hz):
+    assert hz("system", "info").json["sections"]["sf"]["plugin"] == "heinzel-sf"
+
+
+def test_the_sf_theme_is_listed_with_valid_tokens_and_can_be_used(hz):
+    listed = hz("system", "theme", "list").json
+    (sf,) = [theme for theme in listed["themes"] if theme["name"] == "sf"]
+    assert (sf["plugin"], sf["module"], sf["title"]) == ("heinzel-sf", "sf", "SF")
+    assert (sf["dark"]["background"], sf["light"]["primary"], sf["radius"]) == ("#16181d", "#2365d1", "0.5rem")
+    assert hz("system", "theme", "use", "sf").json["selected"] == "sf"
+    config = tomllib.loads((user_config_dir() / "config.toml").read_text(encoding="utf-8"))
+    assert config["system"]["theme"]["name"] == "sf"
