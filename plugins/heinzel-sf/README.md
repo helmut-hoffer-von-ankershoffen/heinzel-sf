@@ -18,22 +18,23 @@ repository that name `sf` as their parent. Private; never published to an index.
 
 ## The theme
 
-Dark is measured from Snowsight; light is derived to match it.
+Both modes are measured from Snowsight.
 
 | Token | Dark | Light | Where it comes from |
 | --- | --- | --- | --- |
 | background, card | `#16181d` | `#ffffff` | measured: page and cards |
-| sidebar | `#191e24` | `#f6f8fa` | measured: the navigation |
-| foreground | `#d7dbe1` | `#1d232b` | measured: body text |
-| muted_foreground | `#979fab` | `#5e6876` | measured: secondary text |
-| border | `#23272c` | `#e2e6eb` | measured: card and panel hairlines |
-| primary / primary_foreground | `#2365d1` / `#ffffff` | same | measured: primary buttons |
-| accent | `#233554` | `#e4edfb` | measured: the active navigation item |
+| sidebar | `#191e24` | `#ffffff` | measured: the navigation (light: white with a hairline right border, `#d7dae0`) |
+| foreground | `#d7dbe1` | `#23272c` | measured: body text |
+| muted_foreground | `#979fab` | `#626c7e` | measured: secondary text |
+| border | `#23272c` | `#d7dbe1` | measured: card and panel hairlines |
+| muted | `#1c2027` | `#eeeff1` | light measured: hover and quiet panels (the trial card); dark derived |
+| primary / primary_foreground | `#2365d1` / `#ffffff` | `#276ee1` / `#ffffff` | measured: primary buttons |
+| accent | `#233554` | `#e3efff` | measured: the active navigation item |
 | accent_foreground | `#71aaff` | `#2365d1` | measured: the active item's text and icon, links |
-| icon | `#d7dbe1` | `#1d232b` | measured: navigation icons are in the text colour |
-| ring | `#2365d1` | `#2365d1` | the primary blue |
-| muted, popover, input | `#1c2027`, `#1c2027`, `#2d333b` | `#f2f4f7`, `#ffffff`, `#d3d9e0` | derived |
-| ok, warn, bad | `#4cb782`, `#e3a53c`, `#ef6461` | `#16794a`, `#9a5b00`, `#c4302b` | derived, tuned to the palette |
+| icon | `#d7dbe1` | `#23272c` | measured: navigation icons are in the text colour |
+| ring | `#2365d1` | `#276ee1` | the primary blue |
+| popover, input | `#1c2027`, `#2d333b` | `#ffffff`, `#ffffff` | dark derived; light measured |
+| ok, warn, bad | `#4cb782`, `#e3a53c`, `#ef6461` | `#16794a`, `#9a5b00`, `#c4302b` | derived; light at least 4.5:1 on white |
 
 Type and density, measured from the console: text `14px` (`font_size`), secondary text `12px` (`font_size_small`),
 headings weight `550` with `-0.5px` tracking, navigation rows `30px` (`row_height`), icons `16px` (`icon_size`),
