@@ -22,7 +22,7 @@ def test_the_sf_theme_is_listed_with_valid_tokens_and_can_be_used(hz):
     listed = hz("system", "theme", "list").json
     (sf,) = [theme for theme in listed["themes"] if theme["name"] == "sf"]
     assert (sf["plugin"], sf["module"], sf["title"]) == ("heinzel-sf", "sf", "SF")
-    assert (sf["dark"]["background"], sf["light"]["primary"], sf["radius"]) == ("#16181d", "#2365d1", "0.5rem")
+    assert (sf["dark"]["background"], sf["light"]["primary"], sf["radius"]) == ("#16181d", "#276ee1", "0.5rem")
     assert (sf["dark"]["accent_foreground"], sf["font_size"], sf["row_height"]) == ("#71aaff", "14px", "30px")
     assert [(font["family"], font["weight"], font["style"]) for font in sf["fonts"]] == [
         ("Inter", "100 900", "normal"),

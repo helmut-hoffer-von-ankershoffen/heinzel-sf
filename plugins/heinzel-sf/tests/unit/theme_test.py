@@ -1,7 +1,9 @@
 """SF's theme: valid as Heinzelmännchen checks it, close to the console it copies, offered by the company module."""
 
+import re
 import tomllib
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 import heinzel_sf
 import pytest
@@ -21,7 +23,7 @@ def test_the_sf_theme_is_valid_with_the_console_blue_and_an_8px_radius():
     theme = load()
     assert (theme.name, theme.title, theme.radius, theme.border_width) == ("sf", "SF", "0.5rem", "1px")
     assert theme.radius_control == "0.375rem"
-    assert theme.light.primary == theme.dark.primary == "#2365d1"
+    assert (theme.light.primary, theme.dark.primary) == ("#276ee1", "#2365d1")
     assert theme.light.primary_foreground == theme.dark.primary_foreground == "#ffffff"
 
 
@@ -42,10 +44,46 @@ def test_dark_uses_the_measured_console_colours():
     assert {key: getattr(dark, key) for key in measured} == measured
 
 
-def test_light_is_white_with_light_grey_blue_borders_and_dark_text():
+def test_light_uses_the_measured_console_colours():
     light = load().light
-    assert (light.background, light.border, light.foreground) == ("#ffffff", "#e2e6eb", "#1d232b")
-    assert (light.accent_foreground, light.icon) == ("#2365d1", "#1d232b")
+    measured = {
+        "background": "#ffffff",
+        "sidebar": "#ffffff",
+        "foreground": "#23272c",
+        "muted_foreground": "#626c7e",
+        "border": "#d7dbe1",
+        "card": "#ffffff",
+        "muted": "#eeeff1",
+        "accent": "#e3efff",
+        "accent_foreground": "#2365d1",
+        "primary": "#276ee1",
+        "primary_foreground": "#ffffff",
+        "ring": "#276ee1",
+        "icon": "#23272c",
+        "input": "#ffffff",
+        "popover": "#ffffff",
+    }
+    assert {key: getattr(light, key) for key in measured} == measured
+
+
+def _luminance(colour: str) -> float:
+    channels = [int(colour[index : index + 2], 16) / 255 for index in (1, 3, 5)]
+    linear = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in channels]
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+
+def contrast(first: str, second: str) -> float:
+    high, low = sorted((_luminance(first), _luminance(second)), reverse=True)
+    return (high + 0.05) / (low + 0.05)
+
+
+def test_light_text_is_readable_on_white_and_on_its_panels():
+    light = load().light
+    for token in ("foreground", "muted_foreground", "ok", "warn", "bad", "accent_foreground"):
+        assert contrast(getattr(light, token), light.background) >= 4.5, token
+    assert contrast(light.muted_foreground, light.muted) >= 4.5
+    assert contrast(light.accent_foreground, light.accent) >= 4.5
+    assert contrast(light.primary_foreground, light.primary) >= 4.5
 
 
 def test_type_scale_and_density_match_the_console():
@@ -97,3 +135,30 @@ def test_the_company_module_offers_it_and_is_the_root_layer():
     assert [let.font(index)[:4] for index in range(len(let.theme.fonts))] == [b"wOF2", b"wOF2"]
     (layer,) = [let for let in heinzel_sf.module.lets if isinstance(let, LayerLet)]
     assert (layer.name, layer.parent, layer.site) == ("sf", None, None)
+
+
+LOGO_FILES = ("logo/mark.svg", "logo/wordmark-light.svg")
+MAX_LOGO_BYTES = 200 * 1024
+
+
+@pytest.mark.parametrize("file", LOGO_FILES)
+def test_logo_files_are_small_clean_svgs_inside_the_theme_directory(file):
+    root = THEME.parent.resolve()
+    path = (THEME.parent / file).resolve(strict=True)
+    assert path.is_relative_to(root)
+    assert path.stat().st_size <= MAX_LOGO_BYTES
+    svg = ET.fromstring(path.read_bytes())  # noqa: S314 - our own file, checked for what it may not hold
+    assert svg.tag == "{http://www.w3.org/2000/svg}svg"
+    for element in svg.iter():
+        assert element.tag.rsplit("}", 1)[-1] not in {"script", "foreignObject", "image", "use", "a", "style"}
+        for attribute in element.attrib:
+            name = attribute.rsplit("}", 1)[-1].lower()
+            assert not name.startswith("on"), (file, attribute)
+            assert name != "href", (file, attribute)
+    assert b"url(" not in path.read_bytes()
+
+
+def test_the_logo_is_the_vendor_blue_on_both_modes():
+    for file in LOGO_FILES:
+        fills = set(re.findall(r'fill="([^"]+)"', (THEME.parent / file).read_text(encoding="utf-8")))
+        assert fills == {"#2cb6e8"}, file

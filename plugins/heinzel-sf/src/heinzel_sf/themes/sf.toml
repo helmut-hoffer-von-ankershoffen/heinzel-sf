@@ -1,7 +1,7 @@
 # SF's look for the Heinzelmännchen web app (heinzel ADR 0044), after the vendor's web console: a near-black blue-grey
 # canvas with a slightly lighter sidebar, hairline borders, one strong blue for primary actions and a blue-tinted
-# active item; the light variant keeps the blue on white and very light grey-blue.
-# Dark values are measured from the console (see the plugin README); light and the derived tokens are tuned to them.
+# active item; the light variant is white, sidebar included, with grey hairlines and a light blue active pill.
+# Both modes are measured from the console (see the plugin README); the derived tokens are tuned to them.
 # Every value becomes a CSS custom property; Heinzelmännchen checks each one when this plugin is imported.
 # Inter ships with the theme (fonts/, SIL OFL 1.1, see fonts/LICENSE.txt); the web app serves it from its own origin.
 name = "sf"
@@ -34,24 +34,25 @@ weight = "100 900"
 style = "italic"
 
 [light]
+# Measured from the console's light mode: a white page and a white sidebar with a hairline right border.
 background = "#ffffff"
-foreground = "#1d232b"
-muted = "#f2f4f7"
-muted_foreground = "#5e6876"
+foreground = "#23272c"
+muted = "#eeeff1"            # measured: hover and quiet panels
+muted_foreground = "#626c7e"
 card = "#ffffff"
-border = "#e2e6eb"
-primary = "#2365d1"
+border = "#d7dbe1"
+primary = "#276ee1"          # measured: primary buttons
 primary_foreground = "#ffffff"
-accent = "#e4edfb"
+accent = "#e3efff"           # measured: the active navigation pill
 ok = "#16794a"
 warn = "#9a5b00"
 bad = "#c4302b"
-ring = "#2365d1"
-sidebar = "#f6f8fa"
-input = "#d3d9e0"
+ring = "#276ee1"
+sidebar = "#ffffff"
+input = "#ffffff"
 popover = "#ffffff"
-accent_foreground = "#2365d1"
-icon = "#1d232b"
+accent_foreground = "#2365d1" # measured: the active item's text and icon, links
+icon = "#23272c"              # measured: navigation icons are in the text colour
 
 [dark]
 background = "#16181d"
