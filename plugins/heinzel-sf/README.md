@@ -29,25 +29,46 @@ Dark is measured from Snowsight; light is derived to match it.
 | border | `#23272c` | `#e2e6eb` | measured: card and panel hairlines |
 | primary / primary_foreground | `#2365d1` / `#ffffff` | same | measured: primary buttons |
 | accent | `#233554` | `#e4edfb` | measured: the active navigation item |
+| accent_foreground | `#71aaff` | `#2365d1` | measured: the active item's text and icon, links |
+| icon | `#d7dbe1` | `#1d232b` | measured: navigation icons are in the text colour |
 | ring | `#2365d1` | `#2365d1` | the primary blue |
 | muted, popover, input | `#1c2027`, `#1c2027`, `#2d333b` | `#f2f4f7`, `#ffffff`, `#d3d9e0` | derived |
 | ok, warn, bad | `#4cb782`, `#e3a53c`, `#ef6461` | `#16794a`, `#9a5b00`, `#c4302b` | derived, tuned to the palette |
 
-Fonts: `Inter, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` (the console's stack;
-fonts are the machine's own, so without Inter installed the system font is used) and a system monospace stack.
-Radius `0.5rem` (8px, the console's cards), border `1px`.
+Type and density, measured from the console: text `14px` (`font_size`), secondary text `12px` (`font_size_small`),
+headings weight `550` with `-0.5px` tracking, navigation rows `30px` (`row_height`), icons `16px` (`icon_size`),
+spacing step `0.25rem`; radius `0.375rem` (6px) for controls and navigation items (`radius_control`) and `0.5rem`
+(8px) for cards and dialogs (`radius`); border `1px`.
+
+Fonts: `Inter, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` (the console's stack) and a
+system monospace stack. Inter ships with the theme, so `hz ui` looks the same without it installed.
+
+### Inter
+
+[`src/heinzel_sf/themes/fonts/`](src/heinzel_sf/themes/fonts/) holds Inter 4.1's variable fonts as woff2,
+`InterVariable.woff2` and `InterVariable-Italic.woff2` (weights 100 to 900), unchanged from the official release
+[`Inter-4.1.zip`](https://github.com/rsms/inter/releases/tag/v4.1) (its `web/` folder). The release publishes no
+checksum; the upright file matches the copy on the Inter site byte for byte. SHA-256:
+
+| File | SHA-256 |
+| --- | --- |
+| `Inter-4.1.zip` | `9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e` |
+| `InterVariable.woff2` | `693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3` |
+| `InterVariable-Italic.woff2` | `e564f652916db6c139570fefb9524a77c4d48f30c92928de9db19b6b5c7a262a` |
+
+Inter is © The Inter Project Authors, licensed under the SIL Open Font License 1.1:
+[`fonts/LICENSE.txt`](src/heinzel_sf/themes/fonts/LICENSE.txt), shipped in the wheel next to the fonts. The theme
+declares them as `[[fonts]]`; the web app serves them from its own origin at `/theme-fonts/sf/<n>.woff2`.
 
 ### Not themeable yet
 
-A theme is colours, fonts, a radius and a border width; the rest of the console's look is layout, which hz's themes
-don't reach (yet):
+A theme is colours, fonts, type scale, density, radii and a border width; the rest of the console's look is layout,
+which hz's themes don't reach (yet):
 
 - the collapsed **64px icon rail** for navigation (logo, expand toggle, grouped icons, bell and avatar at the bottom);
 - the **floating chat launcher**: the assistant panel on the right collapses to a blue button at the right edge;
 - the **top gradient** of the main area (fading into `#181e26` over a faint diagonal pattern), and no header bar;
-- the console's **6px control radius** next to the 8px card radius (hz has one radius), translucent secondary
-  buttons, the 14px base font size, and the lighter blue (`#71aaff`) of active tabs and the active item's text (hz has
-  no accent-foreground token).
+- translucent secondary buttons.
 
 ## Install
 
@@ -56,5 +77,5 @@ See the [repository README](../../README.md#install).
 ## Develop
 
 From the repository root: `make check` (lint, types, tests). The tests are `unit` (the theme as Heinzelmännchen
-validates it) and `integration` (Heinzelmännchen's CLI head with the real entry point: `hz system theme list` and
-`use`).
+validates it, its font files) and `integration` (Heinzelmännchen's CLI head with the real entry point:
+`hz system theme list` and `use`; the wheel, built in-process, carries the fonts and their licence).
