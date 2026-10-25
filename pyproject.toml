@@ -13,9 +13,8 @@ heinzel-sf = { workspace = true }
 [dependency-groups]
 dev = [
     "heinzel-sf",
-    # PINNED TO THE HEAD OF THE CORE'S "theme previews, themed corners and icons" (#82) until it merges and a release
-    # has `[logo]` and `main_tint` in themes; then pin the release tag here and in README.md.
-    "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.0",
+    # Core release with the checked avatar palette and winter decoration.
+    "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2",
     "hatchling>=1.29.0",  # builds the wheel in-process in the tests, offline
     "mypy>=1.19.0,<3",
     "pytest>=9.0.3,<10",

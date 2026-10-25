@@ -88,3 +88,7 @@ See the [repository README](../../README.md#install).
 From the repository root: `make check` (lint, types, tests). The tests are `unit` (the theme as Heinzelmännchen
 validates it, its font files) and `integration` (Heinzelmännchen's CLI head with the real entry point:
 `hz system theme list` and `use`; the wheel, built in-process, carries the fonts and their licence).
+
+The theme dresses the core Heinzelmännchen for winter, with a snowy cap and frosty scarf. Personal hat and shirt
+colours keep precedence; age, beard, build, state and accessories continue to work. This needs the core's optional
+`[heinzel]` theme table (ADR 0064), included from hz 0.7.2.

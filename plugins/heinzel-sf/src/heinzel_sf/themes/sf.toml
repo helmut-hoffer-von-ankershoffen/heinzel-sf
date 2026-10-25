@@ -81,3 +81,12 @@ input = "#2d333b"
 popover = "#1c2027"
 accent_foreground = "#71aaff" # measured: the active item's text and icon, links
 icon = "#d7dbe1"              # measured: navigation icons are in the text colour
+
+# The core drawing stays personal; its default colours and winter decoration follow this theme (core ADR 0064).
+[heinzel]
+decorations = ["snow"]
+
+[heinzel.palette]
+hat = "#dceaf5"
+shirt = "#386387"
+scarf = "#b7daed"

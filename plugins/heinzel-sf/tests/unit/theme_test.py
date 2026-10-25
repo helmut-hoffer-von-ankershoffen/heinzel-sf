@@ -181,3 +181,10 @@ def test_heinzel_accepts_and_serves_the_logo_files():
         assert logos.content(name).startswith(b"<svg")
         assert logos.url(name).startswith(f"/theme-assets/sf/{name}.svg?v=")
     assert logos.content("dark") == logos.content("light")
+
+
+def test_theme_dresses_core_avatars_for_winter():
+    look = load().heinzel
+    assert look is not None
+    assert look.decorations == ("snow",)
+    assert look.palette == {"hat": "#dceaf5", "shirt": "#386387", "scarf": "#b7daed"}
