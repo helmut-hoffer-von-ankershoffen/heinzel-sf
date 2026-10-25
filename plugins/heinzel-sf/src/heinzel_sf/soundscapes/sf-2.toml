@@ -1,0 +1,9 @@
+# SF's second soundscape (heinzel ADR 0058): a YouTube stream in the privacy-enhanced player, never on by default
+# (`hz system sound use sf-2`).
+name = "sf-2"
+title = "SF 2"
+kind = "stream"
+
+[stream]
+provider = "youtube"
+video = "FHc7GBS_H1w"
