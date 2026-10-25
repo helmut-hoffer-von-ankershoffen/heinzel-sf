@@ -2,7 +2,8 @@
 
 A Heinzelmännchen plugin, discovered through the `heinzel.modules` entry point in pyproject.toml. It is the root
 layer (no parent): SF's org, site and team layers are separate plugins in this repository's `plugins/` that name
-`sf` as their parent. For now it brings SF's look for the web app, data in `themes/` (`hz system theme use sf`).
+`sf` as their parent. For now it brings SF's look for the web app, data in `themes/` (`hz system theme use sf`),
+and its soundscape in `soundscapes/` (`hz system sound use sf`).
 """
 
 from pathlib import Path
@@ -16,6 +17,7 @@ module = Module("sf", "SF, the company layer: its look for the web app, later it
 module.layer()  # the root of SF's tree: no parent, no site
 module.service(SfService)
 module.theme(Path(__file__).parent / "themes")  # read and checked now; `hz system theme list` shows it
+module.soundscape(Path(__file__).parent / "soundscapes")  # `hz system sound list` shows it
 
 
 @module.operation
