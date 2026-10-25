@@ -1,6 +1,6 @@
 [project]
 name = "heinzel-sf"
-version = "0.0.0"
+version = "0.1.0"
 description = "SF, the company layer for Heinzelmännchen: its look for the web app, later its adapters and playbooks."
 readme = "README.md"
 authors = [{ name = "Helmut Hoffer von Ankershoffen", email = "helmuthva@gmail.com" }]

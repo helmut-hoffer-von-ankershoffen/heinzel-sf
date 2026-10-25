@@ -21,7 +21,7 @@ class SfService:
         try:
             installed = version(DISTRIBUTION)
         except PackageNotFoundError:  # pragma: no cover - only when running from an uninstalled source tree
-            installed = "0.0.0"
+            installed = "unknown"
         records = [r for r in self._kernel.modules if r.origin.distribution == DISTRIBUTION]
         return SfAbout(
             plugin=DISTRIBUTION,

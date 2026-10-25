@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing reviewed version tag, e.g. v0.1.0
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  UV_FROZEN: "1"
+  RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+
+jobs:
+  publish:
+    name: Check and publish the private plugin release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      - name: Refuse an unsafe release target
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          test "$(gh api "repos/$GITHUB_REPOSITORY" --jq .private)" = true
+          test "v$(uv version --package heinzel-sf --short)" = "$RELEASE_TAG"
+          git rev-parse --verify "refs/tags/$RELEASE_TAG^{commit}"
+          test "$(git rev-parse HEAD)" = "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          git merge-base --is-ancestor "refs/tags/$RELEASE_TAG^{commit}" origin/main
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "This release already exists; releases and tags are never overwritten." >&2
+            exit 1
+          fi
+      - run: make setup
+      - run: make check
+      - name: Build the versioned plugin wheel and source archive
+        run: uv build --all-packages --out-dir dist
+      - name: Publish privately, using the reviewed changelog
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$RELEASE_TAG" dist/* --verify-tag --title "$RELEASE_TAG" --notes-file CHANGELOG.md

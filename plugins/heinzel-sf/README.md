@@ -16,6 +16,31 @@ repository that name `sf` as their parent. Private; never published to an index.
   hz ui
   ```
 
+## Soundscapes
+
+**Snow** (`sf-snow`) is the winter theme's sound when **Follow my theme** is on. **Fireplace** (`sf-fireplace`)
+is a separately selected alternative. Both use the core's privacy-enhanced YouTube player; no media is downloaded
+or bundled, and installation does not enable sound or start playback. Press **Play** in the web player.
+
+```sh
+hz system sound list
+hz system theme use sf
+hz system config set system.sound.follow_theme true
+hz system sound list     # effective: sf-snow, with Snow as the sole sf theme pair
+```
+
+Choose the alternative explicitly, or turn sound off:
+
+```sh
+hz system config set system.sound.follow_theme false
+hz system sound use sf-fireplace
+hz system sound use off
+```
+
+The stream sources are [Winter Mood snowfall](https://www.youtube.com/watch?v=Owg5DxmM4uE) and
+[burning fireplace](https://www.youtube.com/watch?v=2wYtJwDkKIk). Availability depends on YouTube. Existing `sf` and
+`sf-2` choices retain their identifiers; they do not compete with Snow for the theme pairing.
+
 ## The theme
 
 Both modes are measured from Snowsight.
