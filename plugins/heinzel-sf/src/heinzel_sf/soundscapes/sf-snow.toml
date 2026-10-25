@@ -1,0 +1,9 @@
+# The winter theme's optional sound, played by the existing privacy-enhanced YouTube player after Play.
+name = "sf-snow"
+title = "Snow"
+kind = "stream"
+pairs_with = ["sf"]
+
+[stream]
+provider = "youtube"
+video = "Owg5DxmM4uE"

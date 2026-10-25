@@ -1,0 +1,8 @@
+# A separately selected alternative; only Snow pairs with the theme so Follow my theme is unambiguous.
+name = "sf-fireplace"
+title = "Fireplace"
+kind = "stream"
+
+[stream]
+provider = "youtube"
+video = "2wYtJwDkKIk"
