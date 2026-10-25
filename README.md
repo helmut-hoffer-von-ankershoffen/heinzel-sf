@@ -14,11 +14,10 @@ Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come late
 ## Install
 
 The repository is private, so git needs read access to it (`gh auth login`, or any git credential helper). The
-plugin needs a Heinzelmännchen whose themes have logos and a main tint (heinzel #82, after 0.4.0); until that is
-merged and released, install the core from its branch (`@main` once it is merged):
+plugin needs hz 0.7.2 or newer for its avatar palette and winter decoration. Install that release first:
 
 ```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@feat/web-theme-previews-chat-beside"
+uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2"
 hz system plugin add "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
 hz system theme use sf
 ```
@@ -27,7 +26,7 @@ hz system theme use sf
 environment. The same in one `uv` command:
 
 ```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@feat/web-theme-previews-chat-beside" \
+uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2" \
   --with "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
 ```
 

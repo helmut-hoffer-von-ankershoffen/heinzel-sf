@@ -15,7 +15,7 @@ members = [
 [manifest.dependency-groups]
 dev = [
     { name = "hatchling", specifier = ">=1.29.0" },
-    { name = "heinzel", git = "https://github.com/helmut-hoffer-von-ankershoffen/heinzel?rev=v0.7.0" },
+    { name = "heinzel", git = "https://github.com/helmut-hoffer-von-ankershoffen/heinzel?rev=v0.7.2" },
     { name = "heinzel-sf", editable = "plugins/heinzel-sf" },
     { name = "mypy", specifier = ">=1.19.0,<3" },
     { name = "pytest", specifier = ">=9.0.3,<10" },
@@ -371,8 +371,8 @@ wheels = [
 
 [[package]]
 name = "heinzel"
-version = "0.7.0"
-source = { git = "https://github.com/helmut-hoffer-von-ankershoffen/heinzel?rev=v0.7.0#f3f0b80c31e950fe932ab2eae1381b4c95dc0e5f" }
+version = "0.7.2"
+source = { git = "https://github.com/helmut-hoffer-von-ankershoffen/heinzel?rev=v0.7.2#42c6242ba7a111b10b24b536fdf7db483a861ebe" }
 dependencies = [
     { name = "croniter" },
     { name = "fastapi" },
@@ -401,7 +401,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "heinzel", specifier = ">=0.7.0,<1" }]
+requires-dist = [{ name = "heinzel", specifier = ">=0.7.2,<1" }]
 
 [[package]]
 name = "httpcore2"

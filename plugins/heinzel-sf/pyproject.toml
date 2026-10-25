@@ -9,9 +9,9 @@ license-files = ["LICENSE"]
 requires-python = ">=3.12"
 keywords = ["heinzel", "heinzel-plugin", "heinzelmaennchen"]
 classifiers = ["Private :: Do Not Upload", "Programming Language :: Python :: 3", "Typing :: Typed"]
-# Heinzelmännchen resolves to the installed one when the plugin is added with `hz system plugin add`. Themes
-# (`module.theme`, ADR 0044) and soundscapes (`module.soundscape`, ADR 0058) are in 0.7.0, the lower bound.
-dependencies = ["heinzel>=0.7.0,<1"]
+# Heinzelmännchen resolves to the installed one when the plugin is added with `hz system plugin add`.
+# The checked avatar palette and winter decoration require core 0.7.2.
+dependencies = ["heinzel>=0.7.2,<1"]
 
 [project.entry-points."heinzel.modules"]
 sf = "heinzel_sf"
