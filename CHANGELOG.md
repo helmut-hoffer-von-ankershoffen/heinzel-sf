@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+- Remove the two unintended legacy sound choices; Snow and Fireplace are the only SF stream offerings.
+
 ## 0.1.0
 
 - First independent plugin release, compatible with hz 0.7.2 through the declared `<1` bound.
