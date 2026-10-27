@@ -24,4 +24,4 @@ def test_requested_snow_and_fireplace_streams_are_registered_with_one_theme_pair
     )
     assert [name for name, sound in offered.items() if "sf" in sound.pairs_with] == ["sf-snow"]
     assert snow.assets() == fireplace.assets() == {}
-    assert {"sf", "sf-2"} <= offered.keys()  # existing choices retain their stable identity
+    assert set(offered) == {"sf-snow", "sf-fireplace"}

@@ -38,8 +38,7 @@ hz system sound use off
 ```
 
 The stream sources are [Winter Mood snowfall](https://www.youtube.com/watch?v=Owg5DxmM4uE) and
-[burning fireplace](https://www.youtube.com/watch?v=2wYtJwDkKIk). Availability depends on YouTube. Existing `sf` and
-`sf-2` choices retain their identifiers; they do not compete with Snow for the theme pairing.
+[burning fireplace](https://www.youtube.com/watch?v=2wYtJwDkKIk). Availability depends on YouTube.
 
 ## The theme
 

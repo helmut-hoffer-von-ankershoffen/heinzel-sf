@@ -3,7 +3,7 @@
 A Heinzelmännchen plugin, discovered through the `heinzel.modules` entry point in pyproject.toml. It is the root
 layer (no parent): SF's org, site and team layers are separate plugins in this repository's `plugins/` that name
 `sf` as their parent. For now it brings SF's look for the web app, data in `themes/` (`hz system theme use sf`),
-and its soundscape in `soundscapes/` (`hz system sound use sf`).
+and two soundscapes in `soundscapes/`: Snow and Fireplace.
 """
 
 from pathlib import Path

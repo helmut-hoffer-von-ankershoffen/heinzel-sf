@@ -44,6 +44,7 @@ def test_sound_list_exposes_the_packaged_requested_streams_without_enabling_soun
     listed = hz("system", "sound", "list").json
     assert (listed["selected"], listed["effective"], listed["follow_theme"]) == ("off", "off", False)
     offered = {sound["name"]: sound for sound in listed["soundscapes"]}
+    assert {"sf", "sf-2"}.isdisjoint(offered)
     for name, title, video in (
         ("sf-snow", "Snow", "Owg5DxmM4uE"),
         ("sf-fireplace", "Fireplace", "2wYtJwDkKIk"),
