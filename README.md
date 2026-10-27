@@ -14,11 +14,11 @@ Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come late
 ## Install
 
 The repository is private, so git needs read access to it (`gh auth login`, or any git credential helper). The
-plugin is independently versioned (first release 0.1.0) and needs hz 0.7.2 or newer for its avatar palette and winter decoration. Install that release first:
+plugin is independently versioned (current release 0.1.1) and needs hz 0.7.2 or newer for its avatar palette and winter decoration. Install that release first:
 
 ```sh
 uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2"
-hz system plugin add "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
+hz system plugin add "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf@v0.1.1#subdirectory=plugins/heinzel-sf"
 hz system theme use sf
 ```
 
@@ -29,7 +29,7 @@ environment. The same in one `uv` command:
 
 ```sh
 uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2" \
-  --with "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf#subdirectory=plugins/heinzel-sf"
+  --with "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf@v0.1.1#subdirectory=plugins/heinzel-sf"
 ```
 
 Pin a revision with `heinzel-sf.git@<sha>` before `#subdirectory`. Remove it with `hz system plugin remove heinzel-sf`.
@@ -55,7 +55,7 @@ wheel/source archive and publishes them to this private repository's GitHub rele
 releases and never uploads to a public package index. A failed publication can be dispatched again for that existing
 tag after diagnosing its failure. No version tag is created by the source change alone.
 
-For a fixed reproducible install, put `@v0.1.0` after `heinzel-sf` in the repository URL, before `#subdirectory`.
+For a fixed reproducible install, put `@v0.1.1` after `heinzel-sf` in the repository URL, before `#subdirectory`.
 An explicit tag/commit remains pinned when updating hz; choose a newer reviewed tag explicitly to move it.
 
 ## Licence

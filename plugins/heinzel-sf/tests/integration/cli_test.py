@@ -11,7 +11,7 @@ pytestmark = pytest.mark.integration
 def test_info_names_the_module_and_the_theme(hz):
     about = hz("sf", "info").json
     assert about["plugin"] == "heinzel-sf"
-    assert about["version"] == "0.1.0"
+    assert about["version"] == "0.1.1"
     assert (about["modules"], about["themes"]) == (["sf"], ["sf"])
 
 

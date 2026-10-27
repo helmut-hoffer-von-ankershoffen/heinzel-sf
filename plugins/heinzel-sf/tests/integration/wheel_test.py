@@ -30,7 +30,7 @@ def test_the_wheel_carries_both_requested_stream_manifests_without_media(tmp_pat
     with zipfile.ZipFile(wheel) as archive:
         metadata_name = next(name for name in archive.namelist() if name.endswith(".dist-info/METADATA"))
         metadata = BytesParser().parsebytes(archive.read(metadata_name))
-        assert metadata["Version"] == "0.1.0"
+        assert metadata["Version"] == "0.1.1"
         assert "heinzel<1,>=0.7.2" in metadata.get_all("Requires-Dist")
         for name in ("sf-snow", "sf-fireplace"):
             member = f"heinzel_sf/soundscapes/{name}.toml"
