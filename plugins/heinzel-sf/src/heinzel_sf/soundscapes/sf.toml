@@ -1,9 +1,0 @@
-# SF's soundscape (heinzel ADR 0058): a YouTube stream in the privacy-enhanced player, offered once this plugin is
-# installed and never on by default (`hz system sound use sf`).
-name = "sf"
-title = "SF"
-kind = "stream"
-
-[stream]
-provider = "youtube"
-video = "jN-RM1JdudU"

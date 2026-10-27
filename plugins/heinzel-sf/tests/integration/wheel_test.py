@@ -35,4 +35,5 @@ def test_the_wheel_carries_both_requested_stream_manifests_without_media(tmp_pat
         for name in ("sf-snow", "sf-fireplace"):
             member = f"heinzel_sf/soundscapes/{name}.toml"
             assert archive.read(member) == (PLUGIN / "src" / member).read_bytes()
+        assert not any(name.endswith(("/soundscapes/sf.toml", "/soundscapes/sf-2.toml")) for name in archive.namelist())
         assert not any(name.endswith((".mp3", ".ogg", ".opus", ".mp4")) for name in archive.namelist())
