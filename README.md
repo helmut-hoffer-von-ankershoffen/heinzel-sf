@@ -13,6 +13,10 @@ Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come late
 
 ## Install
 
+For macOS and Linux, start with the [standard app installation guide](https://helmut.hoffer-von-ankershoffen.me/heinzel/guides/install/).
+Use `uvx heinzel@latest` if uv is available, or its guided curl/wget installer to install prerequisites automatically.
+Windows may work, but is not supported.
+
 Start the standard app with one command:
 
 ```sh
