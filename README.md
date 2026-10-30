@@ -24,15 +24,17 @@ uvx heinzel@latest
 ```
 
 The first run installs the app and its default plugins automatically and opens the workspace.
-For this private plugin, authenticate GitHub with `gh auth login` if needed. In a second terminal:
+This private source plugin also requires [Git](https://git-scm.com/install/) and the
+[GitHub CLI](https://cli.github.com/). Run `gh auth login` with an account allowed to read this repository.
+In a second terminal:
 
 ```sh
 hz system plugin add https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf --confirm
 hz system theme use sf
 ```
 
-The installer resolves the plugin's project metadata and compatible source automatically. It keeps the installed
-app and its other plugins. No Core reinstall, force flag, version number or manual subdirectory is needed.
+The installer resolves the plugin's project metadata and source automatically, and checks compatibility.
+It keeps the installed app and its other plugins. No Core reinstall, force flag, version number or manual subdirectory is needed.
 Restart the workspace after adding a plugin so its running process loads the new module.
 
 Optional sound choices and **Follow my theme** commands are in the [plugin guide](plugins/heinzel-sf/README.md#soundscapes).
