@@ -114,5 +114,5 @@ validates it, its font files) and `integration` (Heinzelmännchen's CLI head wit
 `hz system theme list` and `use`; the wheel, built in-process, carries the fonts and their licence).
 
 The theme dresses the core Heinzelmännchen for winter, with a snowy cap and frosty scarf. Personal hat and shirt
-colours keep precedence; age, beard, build, state and accessories continue to work. This needs the core's optional
-`[heinzel]` theme table (ADR 0064), included from hz 0.7.2.
+colours keep precedence; age, beard, build, state and accessories continue to work. This uses the SDK's optional
+`[heinzel]` theme table (ADR 0064); compatibility is declared in the plugin metadata.
