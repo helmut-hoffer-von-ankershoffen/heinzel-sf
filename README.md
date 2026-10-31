@@ -1,32 +1,39 @@
 # heinzel-sf
 
-Private [Heinzelmännchen](https://github.com/helmut-hoffer-von-ankershoffen/heinzel) (`hz`) plugins for SF: the
-company's layers (heinzel ADR 0040), one plugin per layer in [`plugins/`](plugins/), in one `uv` workspace, laid out
-like the public reference company [heinzel-acme](https://github.com/helmut-hoffer-von-ankershoffen/heinzel-acme).
+**SF's private plugins for [Heinzelmännchen](https://github.com/helmut-hoffer-von-ankershoffen/heinzel) (`hz`), the
+open-source crew of AI helpers that drafts a team's busywork and asks before anything leaves the machine.** Today
+they give `hz ui` SF's winter look and two quiet sound streams, and they are the company layer that SF's org, site and
+team layers will stack on. One plugin per layer, in one `uv` workspace, laid out like the public reference company
+[heinzel-acme](https://github.com/helmut-hoffer-von-ankershoffen/heinzel-acme). This repository is private; its
+plugins are never published to a public index.
 
 | Plugin | Layer | What it brings |
 | --- | --- | --- |
 | [`heinzel-sf`](plugins/heinzel-sf/) | company (root, no parent) | `hz sf info`; the winter web app theme `sf`; Snow (`sf-snow`) and Fireplace (`sf-fireplace`) streams |
 
 Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come later, as further plugins in
-`plugins/` that name their parent with `module.layer(parent=...)` and list it as a dependency.
+`plugins/` that name their parent with `module.layer(parent=...)` and list it as a dependency. The theme, its tokens
+and the soundscapes are described in the [plugin guide](plugins/heinzel-sf/README.md).
 
 ## Install
 
-For macOS and Linux, start with the [standard app installation guide](https://helmut.hoffer-von-ankershoffen.me/heinzel/guides/install/).
-Use `uvx heinzel@latest` if uv is available, or its guided curl/wget installer to install prerequisites automatically.
-Windows may work, but is not supported.
-
-Start the standard app with one command:
+You need Heinzelmännchen first. For macOS and Linux, one command installs the app with its default plugins and opens it:
 
 ```sh
 uvx heinzel@latest
 ```
 
-The first run installs the app and its default plugins automatically and opens the workspace.
-This private source plugin also requires [Git](https://git-scm.com/install/) and the
-[GitHub CLI](https://cli.github.com/). Use an account allowed to read this repository.
-In a second terminal, sign in and configure Git to use GitHub CLI's credential helper:
+No uv yet? The guided installer sets it up first:
+
+```sh
+curl -LsSf https://helmut.hoffer-von-ankershoffen.me/heinzel/install.sh | sh
+```
+
+Windows may work, but is not supported. Details: the
+[standard app installation guide](https://helmut.hoffer-von-ankershoffen.me/heinzel/guides/install/).
+
+This plugin lives in a private repository, so it also needs [Git](https://git-scm.com/install/) and the
+[GitHub CLI](https://cli.github.com/), signed in with an account that may read it. In a second terminal:
 
 ```sh
 gh auth login
@@ -35,12 +42,10 @@ hz system plugin add https://github.com/helmut-hoffer-von-ankershoffen/heinzel-s
 hz system theme use sf
 ```
 
-The installer resolves the plugin's project metadata and source automatically, and checks compatibility.
-It keeps the installed app and its other plugins. No manual Core reinstall, force flag, version number or manual subdirectory is needed.
-Restart the workspace after adding a plugin so its running process loads the new module.
-
-Optional sound choices and **Follow my theme** commands are in the [plugin guide](plugins/heinzel-sf/README.md#soundscapes).
-Remove the plugin with `hz system plugin remove heinzel-sf`.
+The installer resolves the plugin's metadata and source itself, checks that it fits your Heinzelmännchen, and keeps the
+app and its other plugins. Restart the workspace afterwards so the running process loads the module. Sound choices
+and **Follow my theme** are in the [plugin guide](plugins/heinzel-sf/README.md#soundscapes); sound never starts until
+you press Play. Remove the plugin with `hz system plugin remove heinzel-sf`.
 
 ## Develop
 
