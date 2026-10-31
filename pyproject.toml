@@ -2,6 +2,7 @@
 # tested and released together (heinzel ADR 0040). The root is no plugin itself (a virtual workspace); it holds the
 # tooling every plugin shares.
 [tool.uv]
+no-build = true
 required-version = ">=0.13.0"
 
 [tool.uv.workspace]
