@@ -13,31 +13,39 @@ Org, site and team layers (`sf-<org>`, `sf-<site>`, `sf-<org>-<team>`) come late
 
 ## Install
 
-The repository is private, so git needs read access to it (`gh auth login`, or any git credential helper). The
-plugin is independently versioned (current release 0.1.1) and needs hz 0.7.2 or newer for its avatar palette and winter decoration. Install that release first:
+For macOS and Linux, start with the [standard app installation guide](https://helmut.hoffer-von-ankershoffen.me/heinzel/guides/install/).
+Use `uvx heinzel@latest` if uv is available, or its guided curl/wget installer to install prerequisites automatically.
+Windows may work, but is not supported.
+
+Start the standard app with one command:
 
 ```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2"
-hz system plugin add "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf@v0.1.1#subdirectory=plugins/heinzel-sf"
+uvx heinzel@latest
+```
+
+The first run installs the app and its default plugins automatically and opens the workspace.
+This private source plugin also requires [Git](https://git-scm.com/install/) and the
+[GitHub CLI](https://cli.github.com/). Use an account allowed to read this repository.
+In a second terminal, sign in and configure Git to use GitHub CLI's credential helper:
+
+```sh
+gh auth login
+gh auth setup-git
+hz system plugin add https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf --confirm
 hz system theme use sf
 ```
 
+The installer resolves the plugin's project metadata and source automatically, and checks compatibility.
+It keeps the installed app and its other plugins. No manual Core reinstall, force flag, version number or manual subdirectory is needed.
+Restart the workspace after adding a plugin so its running process loads the new module.
+
 Optional sound choices and **Follow my theme** commands are in the [plugin guide](plugins/heinzel-sf/README.md#soundscapes).
-
-`hz system plugin add` keeps the installed core and every other plugin and adds this one to the `uv tool`
-environment. The same in one `uv` command:
-
-```sh
-uv tool install --force "heinzel @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel@v0.7.2" \
-  --with "heinzel-sf @ git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf@v0.1.1#subdirectory=plugins/heinzel-sf"
-```
-
-Pin a revision with `heinzel-sf.git@<sha>` before `#subdirectory`. Remove it with `hz system plugin remove heinzel-sf`.
+Remove the plugin with `hz system plugin remove heinzel-sf`.
 
 ## Develop
 
 ```sh
-make setup   # uv sync: the workspace, Heinzelmännchen (pinned in pyproject.toml) and the dev tools
+make setup   # uv sync: the workspace, the compatible SDK resolved in uv.lock, and the dev tools
 make check   # ruff, mypy, pytest: what CI runs
 ```
 
@@ -55,8 +63,7 @@ wheel/source archive and publishes them to this private repository's GitHub rele
 releases and never uploads to a public package index. A failed publication can be dispatched again for that existing
 tag after diagnosing its failure. No version tag is created by the source change alone.
 
-For a fixed reproducible install, put `@v0.1.1` after `heinzel-sf` in the repository URL, before `#subdirectory`.
-An explicit tag/commit remains pinned when updating hz; choose a newer reviewed tag explicitly to move it.
+Reproducible source revisions and compatibility requirements are recorded in installation history and plugin metadata.
 
 ## Licence
 
