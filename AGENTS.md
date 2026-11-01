@@ -39,7 +39,24 @@ repository's name, nor its content.
 ```
 plugins/heinzel-sf/      the company layer (root): module `sf`
   src/heinzel_sf/        __init__.py (module, layer, theme, operations), _models.py, _service.py
+  src/heinzel_sf/soundscapes/  sf-snow.toml, sf-fireplace.toml: the sound streams
   src/heinzel_sf/themes/ sf.toml, the web app theme
+  src/heinzel_sf/themes/fonts/  Inter woff2 files and their licence
+  src/heinzel_sf/themes/logo/   the theme's SVG logos
   tests/                 unit/, integration/ (Heinzelmännchen's CLI head with the real entry point)
-pyproject.toml           the workspace: members, the pinned Heinzelmännchen, ruff, mypy, pytest
+.github/workflows/       ci.yml (the checks), release.yml (the private GitHub release)
+pyproject.toml           the workspace: members, a compatible Heinzelmännchen range, ruff, mypy, pytest
 ```
+
+## Releasing
+
+Releases go through a pull request. Nothing is tagged or published until you tag.
+
+1. Update the plugin version, `uv.lock` and [CHANGELOG.md](CHANGELOG.md); run `make check`.
+2. Review the whole diff. Merge only when CI is green.
+3. Tag the merged main commit `vX.Y.Z`.
+
+The Release workflow then checks the tag against the version, that the repository is private and that the commit is on
+main. It runs the full checks, builds the wheel and source archive, and attaches them to this repository's GitHub
+release. It never overwrites a tag or release and never uploads to a public index. If publishing fails, diagnose it,
+then dispatch the workflow again for the same tag.

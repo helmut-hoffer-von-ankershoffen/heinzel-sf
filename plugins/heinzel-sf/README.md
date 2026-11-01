@@ -8,7 +8,7 @@ repository that name `sf` as their parent. Private; never published to an index.
 
 - `hz sf info`: this plugin, its version, its modules and its themes; also a section in `hz system info`.
 - The web app theme **`sf`** (heinzel ADR 0044), in [`src/heinzel_sf/themes/sf.toml`](src/heinzel_sf/themes/sf.toml),
-  offered with `module.theme(...)`. It makes `hz ui` look like the vendor's web console, Snowsight:
+  offered with `module.theme(...)`. It makes the web app (`hz ui`) look like the vendor's web console, Snowsight:
 
   ```sh
   hz system theme list        # sf is listed, from heinzel-sf
@@ -26,7 +26,7 @@ or bundled, and installation does not enable sound or start playback. Press **Pl
 hz system sound list
 hz system theme use sf
 hz system config set system.sound.follow_theme true
-hz system sound list     # effective: sf-snow, with Snow as the sole sf theme pair
+hz system sound list     # sf-snow is now the effective sound: Snow plays when Follow my theme is on
 ```
 
 Choose the alternative explicitly, or turn sound off:
@@ -69,12 +69,15 @@ spacing step `0.25rem`; radius `0.375rem` (6px) for controls and navigation item
 Fonts: `Inter, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` (the console's stack) and a
 system monospace stack. Inter ships with the theme, so `hz ui` looks the same without it installed.
 
+The theme dresses the core Heinzelmännchen for winter, with a snowy cap and frosty scarf. Personal hat and shirt
+colours keep precedence; age, beard, build, state and accessories continue to work. This uses the SDK's optional
+`[heinzel]` theme table (ADR 0064); compatibility is declared in the plugin metadata.
+
 ### Inter
 
 [`src/heinzel_sf/themes/fonts/`](src/heinzel_sf/themes/fonts/) holds Inter 4.1's variable fonts as woff2,
 `InterVariable.woff2` and `InterVariable-Italic.woff2` (weights 100 to 900), unchanged from the official release
-[`Inter-4.1.zip`](https://github.com/rsms/inter/releases/tag/v4.1) (its `web/` folder). The release publishes no
-checksum; the upright file matches the copy on the Inter site byte for byte. SHA-256:
+[`Inter-4.1.zip`](https://github.com/rsms/inter/releases/tag/v4.1) (its `web/` folder). SHA-256:
 
 | File | SHA-256 |
 | --- | --- |
@@ -93,10 +96,10 @@ and [`logo/mark.svg`](src/heinzel_sf/themes/logo/mark.svg) (the square mark, for
 "Snowflake", `24px` high: cleaned single-colour SVGs in the vendor's `#2cb6e8`, which reads on both sidebars, so dark
 uses the light file. The web app serves them from its own origin at `/theme-assets/sf/<light|dark|mark>.svg`.
 
-### Not themeable yet
+### Not themeable
 
-A theme is colours, fonts, type scale, density, radii and a border width; the rest of the console's look is layout,
-which hz's themes don't reach (yet):
+A theme is colours, fonts, type scale, density, radii, a border width and a logo. The rest of the console's look is
+layout, which hz's themes don't reach:
 
 - the collapsed **64px icon rail** for navigation (logo, expand toggle, grouped icons, bell and avatar at the bottom);
 - the **floating chat launcher**: the assistant panel on the right collapses to a blue button at the right edge;
@@ -111,8 +114,5 @@ See the [repository README](../../README.md#install).
 
 From the repository root: `make check` (lint, types, tests). The tests are `unit` (the theme as Heinzelmännchen
 validates it, its font files) and `integration` (Heinzelmännchen's CLI head with the real entry point:
-`hz system theme list` and `use`; the wheel, built in-process, carries the fonts and their licence).
-
-The theme dresses the core Heinzelmännchen for winter, with a snowy cap and frosty scarf. Personal hat and shirt
-colours keep precedence; age, beard, build, state and accessories continue to work. This uses the SDK's optional
-`[heinzel]` theme table (ADR 0064); compatibility is declared in the plugin metadata.
+`hz system theme list` and `use`; the wheel, built in-process, carries the fonts and their licence). The sound streams
+are tested too: `tests/unit/soundscape_test.py`, and the sound assertions in `tests/integration/cli_test.py`.

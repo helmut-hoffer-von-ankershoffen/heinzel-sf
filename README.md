@@ -38,12 +38,12 @@ This plugin lives in a private repository, so it also needs [Git](https://git-sc
 ```sh
 gh auth login
 gh auth setup-git
-hz system plugin add https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf --confirm
+hz system plugin add git+https://github.com/helmut-hoffer-von-ankershoffen/heinzel-sf --confirm
 hz system theme use sf
 ```
 
 The installer resolves the plugin's metadata and source itself, checks that it fits your Heinzelmännchen, and keeps the
-app and its other plugins. Restart the workspace afterwards so the running process loads the module. Sound choices
+app and its other plugins. Restart the web app afterwards so the running process loads the module. Sound choices
 and **Follow my theme** are in the [plugin guide](plugins/heinzel-sf/README.md#soundscapes); sound never starts until
 you press Play. Remove the plugin with `hz system plugin remove heinzel-sf`.
 
@@ -58,17 +58,8 @@ Conventions are Heinzelmännchen's: see [AGENTS.md](AGENTS.md).
 
 ## Releases
 
-Plugin versions follow independent SemVer. The plugin declares its compatible hz range in its `pyproject.toml`;
-its version does not need to match hz. [CHANGELOG.md](CHANGELOG.md) records each reviewed release.
-
-Prepare a release through a pull request: update the plugin version, `uv.lock` and changelog, run `make check`,
-review the complete diff, and merge only after CI is green. Tag the reviewed main commit `vX.Y.Z`; the Release
-workflow checks the tag/version, repository privacy and main ancestry, runs the full checks, builds the plugin
-wheel/source archive and publishes them to this private repository's GitHub release. It never overwrites tags or
-releases and never uploads to a public package index. A failed publication can be dispatched again for that existing
-tag after diagnosing its failure. No version tag is created by the source change alone.
-
-Reproducible source revisions and compatibility requirements are recorded in installation history and plugin metadata.
+Needs Heinzelmännchen 0.7.2 or newer, below 1. Plugin versions follow their own SemVer and need not match hz.
+[CHANGELOG.md](CHANGELOG.md) lists each release. Maintainers: see "Releasing" in [AGENTS.md](AGENTS.md#releasing).
 
 ## Licence
 
