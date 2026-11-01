@@ -1,5 +1,5 @@
 # The checks CI runs, for every plugin in plugins/. Needs only uv.
-.PHONY: setup lint fix typecheck test check
+.PHONY: setup lint fix typecheck test coverage check
 
 setup: ## install the workspace and its dev tools into .venv
 	uv sync --frozen --no-build
@@ -17,5 +17,9 @@ typecheck: ## mypy, strict
 
 test: ## unit and integration tests, offline
 	uv run --frozen --no-build pytest
+
+coverage: ## the tests, measured; fails below 80, where the public repos' badge turns red
+	uv run --frozen coverage run --source=plugins/heinzel-sf/src --branch -m pytest
+	uv run --frozen coverage report --fail-under=80
 
 check: lint typecheck test ## everything CI checks
