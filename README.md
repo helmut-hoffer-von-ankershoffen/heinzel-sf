@@ -1,4 +1,11 @@
-# heinzel-sf
+# SF for Heinzelmännchen
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/helmut-hoffer-von-ankershoffen/heinzel/main/docs/assets/hero-dark.svg">
+    <img src="https://raw.githubusercontent.com/helmut-hoffer-von-ankershoffen/heinzel/main/docs/assets/hero-light.svg" alt="A small crowd of Heinzelmännchen helpers walking together" width="860">
+  </picture>
+</p>
 
 **SF's private plugins for [Heinzelmännchen](https://github.com/helmut-hoffer-von-ankershoffen/heinzel) (`hz`), the
 open-source crew of AI helpers that drafts a team's busywork and asks before anything leaves the machine.** Today
@@ -26,11 +33,11 @@ uvx heinzel@latest
 No uv yet? The guided installer sets it up first:
 
 ```sh
-curl -LsSf https://helmut.hoffer-von-ankershoffen.me/heinzel/install.sh | sh
+curl -LsSf https://heinzel.team/install.sh | sh
 ```
 
 Windows may work, but is not supported. Details: the
-[standard app installation guide](https://helmut.hoffer-von-ankershoffen.me/heinzel/guides/install/).
+[standard app installation guide](https://heinzel.team/guides/install/).
 
 This plugin lives in a private repository, so it also needs [Git](https://git-scm.com/install/) and the
 [GitHub CLI](https://cli.github.com/), signed in with an account that may read it. In a second terminal:
